@@ -1,3 +1,16 @@
+# MacOS
+.DS_Store
+
+# CMake
+build/
+
+# vcpkg
+vcpkg_installed/
+
+# Visual Studio Code
+.vscode/
+.cache/
+
 # Prerequisites
 *.d
 
