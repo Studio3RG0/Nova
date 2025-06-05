@@ -9,11 +9,13 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 file(GLOB_RECURSE NOVA_SOURCES CONFIGURE_DEPENDS
     ${CMAKE_CURRENT_SOURCE_DIR}/NovaEngine3D/src/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/NovaEngine3D/src/*.hpp
 )
 
 find_package(glfw3 CONFIG REQUIRED)
 find_package(glm CONFIG REQUIRED)
 find_package(Vulkan REQUIRED)
+find_package(VulkanHeaders CONFIG REQUIRED)
 
 add_library(NovaEngine3D SHARED)
 
@@ -24,6 +26,7 @@ target_compile_options(NovaEngine3D PRIVATE -Wall -Wextra -Wpedantic -Werror -st
 
 file(GLOB_RECURSE LUMA_SOURCES CONFIGURE_DEPENDS
     ${CMAKE_CURRENT_SOURCE_DIR}/LumaEditor/src/*.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/LumaEditor/src/*.hpp
 )
 
 add_executable(LumaEditor)

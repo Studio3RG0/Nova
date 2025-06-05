@@ -1,3 +1,5 @@
 #include "core/core.hpp"
 
-int main() { nova::core::printHelloWorld(); };
+int main() {
+  auto const app = Nova::Core::Application("LumaEditor", 620, 480, false);
+};
