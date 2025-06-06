@@ -49,12 +49,14 @@ void Renderer::createInstance() {
     enabledExtensions.emplace_back(glfwExtensions[i]);
   };
 
+  vk::InstanceCreateInfo instanceCreateInfo{};
+#ifdef OS_APPLE
   enabledExtensions.emplace_back(
       vk::KHRPortabilityEnumerationExtensionName); // Only for MacOS
-
-  vk::InstanceCreateInfo instanceCreateInfo{};
   instanceCreateInfo.setFlags(
       vk::InstanceCreateFlagBits::eEnumeratePortabilityKHR); // Only for MacOS
+#endif
+
   instanceCreateInfo.setPApplicationInfo(&applicationInfo);
   instanceCreateInfo.setPEnabledExtensionNames(*enabledExtensions.data());
   instanceCreateInfo.setEnabledExtensionCount(enabledExtensions.size());
@@ -192,7 +194,10 @@ void Renderer::createLogicalDevice() {
   std::vector<const char *> enabledExtensions{};
 
   enabledExtensions.emplace_back(vk::KHRSwapchainExtensionName);
-  enabledExtensions.emplace_back("VK_KHR_portability_subset");
+
+#ifdef OS_APPLE
+  enabledExtensions.emplace_back("VK_KHR_portability_subset"); // only for MacOS
+#endif
 
   vk::DeviceCreateInfo createInfo{};
   createInfo.pQueueCreateInfos = queueCreateInfos.data();

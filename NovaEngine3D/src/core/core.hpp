@@ -1,11 +1,16 @@
 #pragma once
 
+#ifdef OS_WINDOWS
+#define DllExport __declspec(dllexport)
+#else
+#define DLLExport
+#endif
 #include "renderer/renderer.hpp"
 #include <memory>
 
 namespace Nova::Core {
 
-class Application {
+class DllExport Application {
 public:
   Application(const char *title, int windowWidth, int windowHeight,
               bool isWindowResizable);
