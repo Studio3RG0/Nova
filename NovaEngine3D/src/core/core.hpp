@@ -3,7 +3,7 @@
 #ifdef OS_WINDOWS
 #define DllExport __declspec(dllexport)
 #else
-#define DLLExport
+#define DllExport
 #endif
 #include "renderer/renderer.hpp"
 #include <memory>
